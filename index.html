@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberAnu 3D</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: #0a0a0a;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    model-viewer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px 20px;
+      font-size: 36px;
+      font-weight: 700;
+      color: #00ff88;
+      z-index: 1;
+      position: relative;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+      backdrop-filter: blur(6px);
+    }
+
+    section h2 {
+      font-size: 32px;
+      color: #00ff88;
+      margin-bottom: 16px;
+    }
+
+    section p {
+      max-width: 700px;
+      font-size: 16px;
+      color: #ccc;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 3D BACKGROUND MODEL -->
+  <model-viewer id="bgModel" src="assets/3de.glb" camera-controls disable-zoom auto-rotate rotation-per-second="0deg" exposure="1.2" alt="3D Background"></model-viewer>
+
+  <!-- CONTENT -->
+  <header>CyberAnu</header>
+
+  <section>
+    <h2>Welcome to CyberAnu</h2>
+    <p>Full-stack web wizardry, cyber defense tactics, and AI-infused design built into one portfolio.</p>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <p>— Game in progress<br>— Dark web toolkit<br>— AI Prompt Engine<br>— 3D Sites with GLB power</p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>Let’s collaborate, test tools, build empires. Reach out — your vision deserves code.</p>
+  </section>
+
+  <script>
+    const viewer = document.querySelector("#bgModel");
+    window.addEventListener("scroll", () => {
+      const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      const deg = scrollPercent * 360;
+      viewer.setAttribute("rotation-per-second", "0deg"); // Disable auto-rotate
+      viewer.setAttribute("camera-orbit", `${deg}deg 75deg 3m`);
+    });
+  </script>
+
+</body>
+</html>
